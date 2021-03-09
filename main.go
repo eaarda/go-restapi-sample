@@ -1,6 +1,8 @@
 package main
 
 import (
+	"api-test/Config"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,5 +13,6 @@ func main() {
 			"message": "API Test",
 		})
 	})
+	Config.InitialMigration()
 	r.Run(":5000")
 }

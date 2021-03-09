@@ -9,7 +9,3 @@ type Book struct {
 	Author string `json:"author"`
 	Page   int    `json:"page"`
 }
-
-func (b *Book) TableName() string {
-	return "book"
-}
