@@ -1,4 +1,4 @@
-package models
+package Models
 
 import "github.com/jinzhu/gorm"
 
@@ -8,4 +8,8 @@ type Book struct {
 	Title  string `json:"title"`
 	Author string `json:"author"`
 	Page   int    `json:"page"`
+}
+
+func (b *Book) TableName() string {
+	return "book"
 }
