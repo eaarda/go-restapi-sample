@@ -62,3 +62,15 @@ func UpdateBook(c *gin.Context) {
 	Config.DB.Model(&book).Updates(input)
 	c.JSON(http.StatusOK, gin.H{"data": book})
 }
+
+func DeleteBook(c *gin.Context) {
+	var book Models.Book
+	if err := Config.DB.Where("id = ?", c.Param("id")).First(&book).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+
+	Config.DB.Delete(&book)
+
+	c.JSON(http.StatusOK, gin.H{"data": true})
+}
