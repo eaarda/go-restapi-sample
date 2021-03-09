@@ -8,16 +8,16 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var db *gorm.DB
+var DB *gorm.DB
 var err error
 
 func InitialMigration() {
-	db, err = gorm.Open("sqlite3", "test.db")
+	database, err := gorm.Open("sqlite3", "test.db")
 	if err != nil {
 		fmt.Println(err.Error())
 		panic("Failed to connect to db")
 	}
-	defer db.Close()
 
-	db.AutoMigrate(&Models.Book{})
+	database.AutoMigrate(&Models.Book{})
+	DB = database
 }
